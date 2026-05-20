@@ -5,6 +5,7 @@ from langchain_tavily import TavilySearch
 
 load_dotenv()
 
+
 @tool
 def triple(num: float) -> float:
     """
@@ -13,6 +14,9 @@ def triple(num: float) -> float:
     """
     return float(num) * 3
 
+
 tools = [TavilySearch(max_results=1), triple]
 
-llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct", temperature=0).bind_tools(tools)
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile", temperature=0
+).bind_tools(tools)
