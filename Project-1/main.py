@@ -18,10 +18,10 @@ def should_continue(state: MessagesState) -> str:
 
 flow = StateGraph(MessagesState)
 flow.add_node(AGENT_REASON, run_agent_reasoning)
-flow.set_entry_point(AGENT_REASON)
 flow.add_node(ACT, tool_node)
-flow.add_conditional_edges(AGENT_REASON, should_continue, {END: END, ACT: ACT})
+flow.set_entry_point(AGENT_REASON)
 flow.add_edge(ACT, AGENT_REASON)
+flow.add_conditional_edges(AGENT_REASON, should_continue, {END: END, ACT: ACT})
 
 app = flow.compile()
 app.get_graph().draw_mermaid_png(output_file_path="flow.png")

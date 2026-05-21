@@ -11,7 +11,7 @@ You are a helpful assistant that can use tools to answer questions.
 """
 
 
-def run_agent_reasoning(state: MessagesState) -> str:
+def run_agent_reasoning(state: MessagesState) -> dict:
     """Run agent reasoning node."""
     response = llm.invoke(
         [{"role": "system", "content": SYSTEM_MESSAGE}, *state["messages"]]
