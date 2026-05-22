@@ -36,4 +36,7 @@ if __name__ == "__main__":
             ]
         }
     )
-    print(res["messages"][LAST].content)
+    last_message = res["messages"][-1]
+    if isinstance(last_message, AIMessage) and last_message.tool_calls:
+        print(last_message.tool_calls[0]["args"]["answer"])
+    print(res)
