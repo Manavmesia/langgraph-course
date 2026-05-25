@@ -52,16 +52,16 @@ revisor = actor_prompt_template.partial(
     first_instruction=revise_instructions
 ) | llm.bind_tools(tools=[ReviseAnswer], tool_choice="ReviseAnswer")
 
-# if __name__ == "__main__":
-#     human_message = HumanMessage(
-#         content="Write about AI-Powered SOC / autonomous soc  problem domain,"
-#         " list startups that do that and raised capital."
-#     )
-#     chain = (
-#         first_responder_prompt_template
-#         | llm.bind_tools(tools=[AnswerQuestion], tool_choice="AnswerQuestion")
-#         | parser_pydantic
-#     )
+if __name__ == "__main__":
+    human_message = HumanMessage(
+        content="Write about AI-Powered SOC / autonomous soc  problem domain,"
+        " list startups that do that and raised capital."
+    )
+    chain = (
+        first_responder_prompt_template
+        | llm.bind_tools(tools=[AnswerQuestion], tool_choice="AnswerQuestion")
+        | parser_pydantic
+    )
 
-#     res = chain.invoke(input={"messages": [human_message]})
-#     print(res)
+    res = chain.invoke(input={"messages": [human_message]})
+    print(res)
